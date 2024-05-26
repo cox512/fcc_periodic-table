@@ -11,15 +11,6 @@ IS_INTEGER() {
     fi
 }
 
-# IS_STRING() {
-#     if [[ -n "$1" ]]
-#       then
-#           return 0  # The parameter is a non-empty string
-#       else
-#           return 1  # The parameter is not a non-empty string
-#     fi
-# }
-
 IS_LONGER_THAN_2_CHARS() {
     if [ ${#1} -gt 2 ] 
       then
