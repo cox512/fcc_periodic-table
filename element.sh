@@ -36,13 +36,16 @@ SEARCH_BY_NAME() {
 }
 
 GET_ELEMENT_PROPERTIES() {
-  #Create variable for param (atomic number)
+  #Create variable for passed in param
   local ELEMENT="$1"
 
+  #Check if atomic number is passed in as param 
   if IS_INTEGER "$ELEMENT"
     then
+      #Search by atomic number
       SEARCH_BY_ATOMIC_NUMBER "$ELEMENT"
     else
+      #Symbol or name was passed in as Param
       if IS_LONGER_THAN_2_CHARS "$1"
         then
           #Search for element based on name
