@@ -22,17 +22,17 @@ IS_LONGER_THAN_2_CHARS() {
 
 SEARCH_BY_ATOMIC_NUMBER() {
 #Get all the property values for the element based on the atomic_number
-  PROPERTIES=$($PSQL "SELECT * FROM properties FULL JOIN elements ON properties.atomic_number = elements.atomic_number WHERE properties.atomic_number=$ELEMENT;")
+  PROPERTIES=$($PSQL "SELECT * FROM properties FULL JOIN elements ON properties.atomic_number = elements.atomic_number FULL JOIN types ON properties.type_id = types.type_id WHERE properties.atomic_number=$ELEMENT;")
 }
 
 SEARCH_BY_SYMBOL() {
 #Get all the property values for the element based on the symbol
-  PROPERTIES=$($PSQL "SELECT * FROM properties FULL JOIN elements ON properties.atomic_number = elements.atomic_number WHERE elements.symbol='$ELEMENT';")
+  PROPERTIES=$($PSQL "SELECT * FROM properties FULL JOIN elements ON properties.atomic_number = elements.atomic_number FULL JOIN types ON properties.type_id = types.type_id WHERE elements.symbol='$ELEMENT';")
 }
 
 SEARCH_BY_NAME() {
 #Get all the property values for the element based on the name
-  PROPERTIES=$($PSQL "SELECT * FROM properties FULL JOIN elements ON properties.atomic_number = elements.atomic_number WHERE elements.name='$ELEMENT';")
+  PROPERTIES=$($PSQL "SELECT * FROM properties FULL JOIN elements ON properties.atomic_number = elements.atomic_number FULL JOIN types ON properties.type_id = types.type_id WHERE elements.name='$ELEMENT';")
 }
 
 GET_ELEMENT_PROPERTIES() {
@@ -62,7 +62,7 @@ GET_ELEMENT_PROPERTIES() {
       echo "I could not find that element in the database."
     else
       #The parameter is valid. Parse the returned results of the SQL call
-      echo $PROPERTIES | while IFS='|' read -r ATOMIC_NUMBER TYPE ATOMIC_MASS MELTING_POINT BOILING_POINT TYPE_ID ATOMIC_NUMBER_2 SYMBOL NAME
+      echo $PROPERTIES | while IFS='|' read -r ATOMIC_NUMBER ATOMIC_MASS MELTING_POINT BOILING_POINT TYPE_ID ATOMIC_NUMBER_2 SYMBOL NAME TYPE TYPE_ID
       do
         #Print details of the element
         echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $ATOMIC_MASS amu. $NAME has a melting point of $MELTING_POINT celsius and a boiling point of $BOILING_POINT celsius."
