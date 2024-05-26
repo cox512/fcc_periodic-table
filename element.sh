@@ -58,9 +58,10 @@ GET_ELEMENT_PROPERTIES() {
 
   if [[ -z $PROPERTIES ]]
     then
+      #The passed parameter is invalid
       echo "I could not find that element in the database."
     else
-      #Parse the returned results of the SQL call
+      #The parameter is valid. Parse the returned results of the SQL call
       echo $PROPERTIES | while IFS='|' read -r ATOMIC_NUMBER TYPE ATOMIC_MASS MELTING_POINT BOILING_POINT TYPE_ID ATOMIC_NUMBER_2 SYMBOL NAME
       do
         #Print details of the element
