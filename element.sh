@@ -14,9 +14,9 @@ IS_INTEGER() {
 IS_LONGER_THAN_2_CHARS() {
     if [ ${#1} -gt 2 ] 
       then
-          return 0  # The string parameter is longer than 2 characters
+          return 0  # The parameter is longer than 2 characters
       else
-          return 1  # The string parameter is not longer than 2 characters
+          return 1  # The parameter is not longer than 2 characters
     fi
 }
 
