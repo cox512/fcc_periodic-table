@@ -73,7 +73,7 @@ GET_ELEMENT_PROPERTIES() {
   if [ -z $1 ]
     then
       #No parameter was passed in
-      echo Please provide an element as an argument
+      echo Please provide an element as an argument.
     else
       #Print out Element details
       GET_ELEMENT_PROPERTIES $1
